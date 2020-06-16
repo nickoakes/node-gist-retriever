@@ -1,0 +1,18 @@
+{
+  "name": "gist-retriever-nodejs",
+  "version": "1.0.0",
+  "description": "A Node.js console application which takes a GitHub Gist ID, destination filename and path and retrieves the Gist via the GitHub API, writing it to a local directory.",
+  "main": "bin/index.js",
+  "bin": {
+    "start": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick Oakes",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "inquirer": "^7.2.0"
+  }
+}
