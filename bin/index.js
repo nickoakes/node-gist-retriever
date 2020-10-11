@@ -10,15 +10,11 @@ inquirer.prompt([
         name: "gistID",
         message: "Please enter the ID of the Gist required",
         validate(input){
-            return new Promise(
-                (resolve, reject) => {
-                    if(input != ""){
-                        resolve(true);
-                    } else{
-                        reject(false);
-                    }
-                }
-            )
+            if(input != "" && input.match(/^[a-z0-9]*$/)){
+                return true;
+            } else{
+                return "The ID entered was invalid. Please try again.";
+            }
         }
     },
     {
@@ -26,31 +22,23 @@ inquirer.prompt([
         name: "filename",
         message: "Please enter a name for the destination file (including extension)",
         validate(input){
-            return new Promise(
-                (resolve, reject) => {
-                    if(input != ""){
-                        resolve(true);
-                    } else{
-                        reject(false);
-                    }
-                }
-            )
+            if(input != ""){
+                return true;
+            } else{
+                return "Destination file name cannot be blank.";
+            }
         }
     },
     {
         type: "input",
         name: "filepath",
-        message: "Please enter the destination path (without trailing slash)",
+        message: "Please enter the destination path (forward slashes; no trailing slash)",
         validate(input){
-            return new Promise(
-                (resolve, reject) => {
-                    if(input != ""){
-                        resolve(true);
-                    } else{
-                        reject(false);
-                    }
-                }
-            )
+            if(input != "" && input.match(/^(.+)\/([^\/]+)$/)){
+                return true;
+            } else{
+                return "The destination path entered was invalid. Please try again.";
+            }
         }
     }
 ]).then(async answers => {
